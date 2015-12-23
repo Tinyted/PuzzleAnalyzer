@@ -2,10 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PuzzleVideoController">
             <connections>
+                <outlet property="orbLocationView" destination="a4n-aF-PsM" id="hW7-eS-bII"/>
+                <outlet property="showHideOrbButton" destination="xcd-T5-KAS" id="AP9-yJ-6Wj"/>
+                <outlet property="snapShotButton" destination="ZPU-Ts-fJy" id="sd0-Ru-A8s"/>
                 <outlet property="videoPreviewView" destination="clM-2L-tsc" id="htP-qg-2a0"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="frU-f7-R4u"/>
             </connections>
@@ -15,20 +19,61 @@
         <window title="Video Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="640" height="960"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="320" height="568"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1080" height="1897"/>
-            <value key="minSize" type="size" width="640" height="960"/>
-            <value key="maxSize" type="size" width="640" height="960"/>
+            <value key="minSize" type="size" width="640" height="1136"/>
+            <value key="maxSize" type="size" width="640" height="1136"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="640" height="960"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clM-2L-tsc">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="960"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="clM-2L-tsc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xcd-T5-KAS">
+                                <rect key="frame" x="6" y="530" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Orbs" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1mJ-41-Kb1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showHideOrbIndicators:" target="-2" id="oT7-pD-MUW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xcd-T5-KAS" firstAttribute="top" secondItem="clM-2L-tsc" secondAttribute="top" constant="10" id="I3J-xa-mu3"/>
+                            <constraint firstItem="xcd-T5-KAS" firstAttribute="leading" secondItem="clM-2L-tsc" secondAttribute="leading" constant="12" id="Mwu-Eg-h4a"/>
+                        </constraints>
+                    </customView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZPU-Ts-fJy">
+                        <rect key="frame" x="103" y="530" width="114" height="32"/>
+                        <buttonCell key="cell" type="push" title="SNAPSHOT" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wAl-a5-R9i">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name=".HelveticaNeueDeskInterface-Regular"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="snapShot:" target="-2" id="phI-oH-pK1"/>
+                        </connections>
+                    </button>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="a4n-aF-PsM" userLabel="Orb Locations">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="262"/>
                     </customView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="clM-2L-tsc" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="5fn-DO-AVQ"/>
+                    <constraint firstItem="ZPU-Ts-fJy" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="10" id="Hcb-XG-0R2"/>
+                    <constraint firstItem="a4n-aF-PsM" firstAttribute="bottom" secondItem="clM-2L-tsc" secondAttribute="bottom" id="M1x-gg-TLo"/>
+                    <constraint firstItem="ZPU-Ts-fJy" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="S2H-65-ZJ9"/>
+                    <constraint firstItem="a4n-aF-PsM" firstAttribute="height" secondItem="EiT-Mj-1SZ" secondAttribute="height" multiplier="0.4621" id="Ywr-K6-ZX8"/>
+                    <constraint firstItem="clM-2L-tsc" firstAttribute="width" secondItem="EiT-Mj-1SZ" secondAttribute="width" id="aKg-kv-hL9"/>
+                    <constraint firstItem="clM-2L-tsc" firstAttribute="height" secondItem="EiT-Mj-1SZ" secondAttribute="height" id="fUh-3N-IRL"/>
+                    <constraint firstItem="clM-2L-tsc" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="fby-v9-sCs"/>
+                    <constraint firstItem="a4n-aF-PsM" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="hFC-xp-3vh"/>
+                    <constraint firstItem="a4n-aF-PsM" firstAttribute="width" secondItem="EiT-Mj-1SZ" secondAttribute="width" id="wLt-zU-zwd"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="123.5" y="490.5"/>
+            <point key="canvasLocation" x="123" y="490"/>
         </window>
     </objects>
 </document>

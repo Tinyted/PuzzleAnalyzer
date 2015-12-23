@@ -11,6 +11,9 @@
 @interface PuzzleVideoController : NSWindowController
 {
     IBOutlet NSView *videoPreviewView;
+    IBOutlet NSButton *snapShotButton;
+    IBOutlet NSView *orbLocationView;
+    IBOutlet NSButton *showHideOrbButton;
 }
 
 @end
