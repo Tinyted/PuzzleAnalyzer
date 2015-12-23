@@ -7,16 +7,27 @@
 //
 
 #import "AppDelegate.h"
+#import "PuzzleVideoController.h"
 
 @interface AppDelegate ()
+{
 
-@property (weak) IBOutlet NSWindow *window;
+}
+
+@property (nonatomic, strong) PuzzleVideoController *puzzleWindowController;
+
 @end
 
 @implementation AppDelegate
 
+@synthesize puzzleWindowController;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    PuzzleVideoController *controller = [[PuzzleVideoController alloc]initWithWindowNibName:@"VideoWindow"];
+    [controller showWindow:self];
+    puzzleWindowController = controller;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
