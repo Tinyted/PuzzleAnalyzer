@@ -15,6 +15,7 @@
 		D3A421FA1C2A6C9A003E9C7E /* VideoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A421F91C2A6C9A003E9C7E /* VideoWindow.xib */; };
 		D3A421FC1C2A6DF2003E9C7E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A421FB1C2A6DF2003E9C7E /* AVFoundation.framework */; };
 		D3A421FE1C2A7381003E9C7E /* CoreMediaIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A421FD1C2A7381003E9C7E /* CoreMediaIO.framework */; };
+		D3A422041C2AB8E3003E9C7E /* PuzzleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A422031C2AB8E3003E9C7E /* PuzzleManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		D3A421F91C2A6C9A003E9C7E /* VideoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoWindow.xib; sourceTree = "<group>"; };
 		D3A421FB1C2A6DF2003E9C7E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D3A421FD1C2A7381003E9C7E /* CoreMediaIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMediaIO.framework; path = System/Library/Frameworks/CoreMediaIO.framework; sourceTree = SDKROOT; };
+		D3A422021C2AB8E3003E9C7E /* PuzzleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleManager.h; sourceTree = "<group>"; };
+		D3A422031C2AB8E3003E9C7E /* PuzzleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				D3A421E61C2A6799003E9C7E /* AppDelegate.m */,
 				D3A421F61C2A6C29003E9C7E /* PuzzleVideoController.h */,
 				D3A421F71C2A6C29003E9C7E /* PuzzleVideoController.m */,
+				D3A422021C2AB8E3003E9C7E /* PuzzleManager.h */,
+				D3A422031C2AB8E3003E9C7E /* PuzzleManager.m */,
 				D3A421F91C2A6C9A003E9C7E /* VideoWindow.xib */,
 				D3A421EB1C2A6799003E9C7E /* Assets.xcassets */,
 				D3A421ED1C2A6799003E9C7E /* MainMenu.xib */,
@@ -160,6 +165,7 @@
 				D3A421EA1C2A6799003E9C7E /* main.m in Sources */,
 				D3A421E71C2A6799003E9C7E /* AppDelegate.m in Sources */,
 				D3A421F81C2A6C29003E9C7E /* PuzzleVideoController.m in Sources */,
+				D3A422041C2AB8E3003E9C7E /* PuzzleManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,28 +8,23 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMediaIO/CMIOHardware.h>
 
+#import "PuzzleManager.h"
 #import "PuzzleVideoController.h"
 
-typedef enum
-{
-    oFire,
-    oWater,
-    oGrass,
-    oLight,
-    oDark,
-    oHeart,
-    oUndefined
-} ElementType;
+
 
 @interface PuzzleVideoController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 {
     BOOL snapshot;
+    
+    PuzzleManager *puzzleManager;
 }
 
 @property (nonatomic, strong) AVCaptureSession *videoSession;
 @property (nonatomic, strong) AVCaptureDeviceInput *videoDeviceInput;
 @property (nonatomic, strong) NSArray *observers;
 @property (nonatomic, strong) NSMutableArray *orbIndicators;
+@property (nonatomic, strong) PuzzleManager *puzzleManager;
 
 @end
 
@@ -39,6 +34,7 @@ typedef enum
 @synthesize videoDeviceInput;
 @synthesize observers;
 @synthesize orbIndicators;
+@synthesize puzzleManager;
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -46,6 +42,7 @@ typedef enum
     if (self)
     {
         orbIndicators = [[NSMutableArray alloc]init];
+        puzzleManager = [[PuzzleManager alloc]init];
         
         //Allow iOS device to be seen
         CMIOObjectPropertyAddress prop =
@@ -247,6 +244,9 @@ typedef enum
     
 //    NSLog(@"buffer %zu %zu",bufferWidth,bufferHeight);
     
+    int orbs_width = 6;
+    int orbs_height = 5;
+    
     if ((int)pixelBytes == 4)
     {
         if (snapshot)
@@ -255,7 +255,7 @@ typedef enum
             
             
             int **orbs_x = malloc(sizeof(int *)*6);
-            for (int i=0; i<6; i++)
+            for (int i=0; i<orbs_width; i++)
             {
                 int *orbs_y = malloc(sizeof(int)*5);
                 orbs_x[i] = orbs_y;
@@ -355,11 +355,11 @@ typedef enum
                     }
                     else
                     {
-//                        NSLog(@"x|%i|y:%i   |R%0.01f|G%0.01f|B%0.01f|A%i      px:%i,py:%i",x,y,r,g,b,a,column,row);
+                        NSLog(@"x|%i|y:%i   |R%0.01f|G%0.01f|B%0.01f|A%i      px:%i,py:%i",x,y,r,g,b,a,column,row);
                         int *orbs_y = orbs_x[x];
                         orbs_y[y] = oUndefined;
                     }
-                    NSLog(@"x|%i|y:%i   |R%0.01f|G%0.01f|B%0.01f|A%i      px:%i,py:%i",x,y,r,g,b,a,column,row);
+//                    NSLog(@"x|%i|y:%i   |R%0.01f|G%0.01f|B%0.01f|A%i      px:%i,py:%i",x,y,r,g,b,a,column,row);
 
                 }
                 
@@ -421,8 +421,8 @@ typedef enum
                 NSLog(@"%@",appendstring);
             }
             NSLog(@"fire:%i water:%i grass:%i light:%i dark:%i heart:%i",fire,water,grass,light,dark,heart);
-            
-//            [self performPatternRecognitionwithArray:orbs_x sizex:6 sizey:5];
+            if (puzzleManager)
+                [puzzleManager generateBoard:orbs_x width:orbs_width height:orbs_height];
             
             for (int i=0;i<6;i++)
             {
@@ -430,42 +430,16 @@ typedef enum
                 free(orbs_y);
             }
             free(orbs_x);
-            
-            //        for( int row = 0; row < bufferHeight; row++ ) {
-            //            for( int column = 0; column < bufferWidth; column++ ) {
-            //
-            //                unsigned char *pixel = base + (row * rowBytes) + (column * (size_t)pixelBytes);
-            //                //
-            //                //            redness += pixel[2]; // BGRA pixel format
-            //                //0,0 at bottom left
-            //                int x = 0;
-            //                int y = 2;
-            //                //52,345
-            //
-            //                int orbsize = 102; //102 pixels
-            //                //row is up down
-            //                //column is left right
-            //                if (row == bufferHeight-(y*orbsize)-(orbsize/2) && column == (orbsize/2)+(x*orbsize))
-            //                {
-            //                    NSLog(@"x|%i|y:%i   |R%i|G%i|B%i|A%i      px:%i,py:%i",x,y,pixel[2],pixel[1],pixel[0],pixel[3],column,row);
-            //                }
-            //            }
-            //        }
-            //        NSLog(@"bufferHeight:%zu|Width:%zu",bufferHeight,bufferWidth);
         }
     }
     else
     {
         //        NSLog(@"pixelBytes incorrect:%f",pixelBytes);
     }
-    
-    //    NSLog(@"bufferWidth:%zu|bufferHeight:%zu|rowBytes:%zu|pixelbytes:%f",bufferWidth,bufferHeight,rowBytes,pixelBytes);
-    //
-    CVPixelBufferUnlockBaseAddress( pixelBuffer, 0 );
-    //
-    //    NSLog(@"redness: %.1f %%",(100.0*redness)/
-    //          (255.0*bufferWidth*bufferHeight));
-
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
 }
+
+
+
 
 @end
