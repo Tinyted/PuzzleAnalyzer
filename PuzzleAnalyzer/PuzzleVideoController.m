@@ -179,7 +179,8 @@
     
     [self.window.contentView addSubview:orbLocationView positioned:NSWindowAbove relativeTo:videoPreviewView];
     [self.window.contentView addSubview:showHideOrbButton positioned:NSWindowAbove relativeTo:videoPreviewView];
-    
+    [self.window.contentView addSubview:patternButton positioned:NSWindowAbove relativeTo:videoPreviewView];
+
     NSLog(@"orblocationview layer:%@",orbLocationView.layer);
 //    [orbLocationView.layer setBackgroundColor:CGColorGetConstantColor(kCGColorBlack)];
 
@@ -213,6 +214,11 @@
 - (IBAction)showHideOrbIndicators:(id)sender
 {
     orbLocationView.hidden = !orbLocationView.hidden;
+}
+
+- (IBAction)analysePatterns:(id)sender
+{
+    [puzzleManager generatePatterns];
 }
 
 - (void)changeOrbIndicator:(int)i forColor:(CGColorRef)color
@@ -360,7 +366,7 @@
                         orbs_y[y] = oUndefined;
                     }
 //                    NSLog(@"x|%i|y:%i   |R%0.01f|G%0.01f|B%0.01f|A%i      px:%i,py:%i",x,y,r,g,b,a,column,row);
-
+                
                 }
                 
             }
@@ -416,7 +422,7 @@
                     }
 //                    element = [NSString stringWithFormat:@"%i|%i",x,y];
                     
-                    appendstring = [appendstring stringByAppendingFormat:@"%@ ",element];
+                    appendstring = [appendstring stringByAppendingFormat:@"%@ [%i,%i]",element,x,y];
                 }
                 NSLog(@"%@",appendstring);
             }

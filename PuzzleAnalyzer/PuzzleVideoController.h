@@ -14,6 +14,7 @@
     IBOutlet NSButton *snapShotButton;
     IBOutlet NSView *orbLocationView;
     IBOutlet NSButton *showHideOrbButton;
+    IBOutlet NSButton *patternButton;
 }
 
 @end

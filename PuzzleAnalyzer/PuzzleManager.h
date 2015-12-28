@@ -37,9 +37,12 @@ struct Orb
     ElementType element;
 };
 
+/*
+    Current code has it so X,Y starts at bottom left
+ */
 struct Board
 {
-    struct Orb **orbs;
+    struct Orb **orbs; //
     struct AreaSize size;
 };
 
@@ -49,7 +52,7 @@ struct OrbPattern
     ElementType elementType;
     uint orbCount;
     struct AreaSize size;
-    struct OriginPoint *origin;
+    struct OriginPoint origin;
 };
 
 struct ComplicatedOrbPattern
@@ -65,6 +68,6 @@ struct ComplicatedOrbPattern
 
 
 - (void)generateBoard:(int **)data width:(int)width height:(int)height;
-
+- (void)generatePatterns; //Will perform on separate thread
 
 @end
