@@ -98,9 +98,9 @@ struct PatternList *getEndOfPatternList(struct PatternList *patternlist)
             origin.x = x;
             origin.y = y;
             
-            for (int areax = 1; areax < currentBoard->size.width - x; areax++)
+            for (int areax = 1; areax <= currentBoard->size.width - x; areax++)
             {
-                for (int areay = 1; areay < currentBoard->size.height - y; areay++)
+                for (int areay = 1; areay <= currentBoard->size.height - y; areay++)
                 {
                     if (areax != 1 && areay != 1)
                     {
@@ -227,14 +227,14 @@ struct PatternList *getEndOfPatternList(struct PatternList *patternlist)
     pattern->size = size;
     pattern->origin = origin;
     
-    NSLog(@"--Pattern for [%@] count:%i",[self stringForElement:element],expect);
+//    NSLog(@"--Pattern for [%@] count:%i",[self stringForElement:element],expect);
     
     for (int i=0; i<expect; i++)
     {
-        NSLog(@"[%@] [%i,%i]",[self stringForElement:element],pattern->orbs[i].origin.x,pattern->orbs[i].origin.y);
+//        NSLog(@"[%@] [%i,%i]",[self stringForElement:element],pattern->orbs[i].origin.x,pattern->orbs[i].origin.y);
     }
     
-    NSLog(@"--");
+//    NSLog(@"--");
     
     return pattern;
 }
